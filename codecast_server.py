@@ -1,4 +1,7 @@
 import os, subprocess
+from socket import *
+from thread import thread
+from Crypto.Cipher import AES
 import jack
 
 if __name__ == "__main__":
