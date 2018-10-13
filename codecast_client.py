@@ -24,6 +24,7 @@ class Client(self):
         else:
             cmd = 'jackd -d net'
             output, error = self.runbash(cmd)
+            #ISSUE: maybe doesn't work without -R realtime flag?
 
         #start jack client to manage connections
         jclient = jack.Client('JackClient')
