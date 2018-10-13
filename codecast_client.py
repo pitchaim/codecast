@@ -24,7 +24,14 @@ class Client(self):
 
             #wait for server to verify netjack RUNNING
             #look at ports, find incoming netjack channel,
-            #route to system out, print something to cmd line!
+            #name of net port will have some identifying label -
+            #figure it out ... here pretend it's TOKEN
+            net_in_p = jclient.get_ports('*TOKEN*')
+            sys_out_p = jclient.get_ports('system:playback_*')
+            # connect net_in_p to system out
+
+            #print something to cmd line - hostname, time up, messages
+            #passed through socket, etc.
 
     def runbash(self, cmd):
         process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)

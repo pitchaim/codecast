@@ -14,4 +14,6 @@ class Server(self):
         # reqIP = requester IP from SOCKET
         # cmd = 'jack_netsource -H {}'.format(reqIP)
         # runbash(cmd)
-        # send message over socket that netjack RUNNING
+        # send message over socket that netjack RUNNING,
+        # maybe include a message to display at
+        # client cmd line
