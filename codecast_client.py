@@ -1,13 +1,12 @@
 import os, subprocess
 from socket import *
-from thread import thread
-from Crypto.Cipher import AES
+from threading import Thread
 import jack
 
 if __name__ == "__main__":
     pass
 
-class Client(self):
+class Client():
 
 
     def __init__(self):

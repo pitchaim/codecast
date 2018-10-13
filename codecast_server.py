@@ -1,18 +1,10 @@
 import sys, os, subprocess
 from socket import *
 import ssl
-from thread import thread
-from Crypto.Cipher import AES
+from threading import Thread
 import jack
 
-if __name__ == "__main__":
-    # command-line arg: name you want people to see for this stream
-    sname = sys.argv[1]
-    # read in file with known clients
-    # create Server instance, pass in password and client table
-    # run server
-
-class Server(self):
+class Server():
 
     def __init__(self, password, client_table, sname):
         self.password = password
@@ -28,23 +20,14 @@ class Server(self):
 
         self.client = jack.Client('JackClient')
 
-        # nice opening message
-        print('\n')
-        print('---------------------------------------')
-        print('-----------C-O-D-E-C-A-S-T-------------')
-        print('-----------------v1.0------------------')
-        print('---------------------------------------')
-        print('-------(c) Austin Marcus 2018----------')
-        print('---------------------------------------')
-        print('\n')
-
-
     def run(self):
         # ---SET UP SERVER SOCKET - LISTEN--- #
         # ---WHEN CONNECTION MADE, PROCEED--- #
         self.s = socket(AF_INET, SOCK_STREAM)
+        self.s.settimeout(10)
         self.context = ssl.create_default_context()
-        self.ws = self.context.wrap_socket(self.s, ssl_version=ssl._PROTOCOL_SSLv23, ciphers="ADH-AES256-SHA")
+        self.context.check_hostname = False
+        self.ws = self.context.wrap_socket(self.s, server_side=True)
         self.ws.bind((self.HOST, self.PORT))
         self.ws.listen(self.max_clients)
         print('Server running')
@@ -96,12 +79,29 @@ class Server(self):
                     print('Client {} closed connection'.format(cname))
                     conn.close()
 
-    def do_encrypt(self, message, password):
-        obj = AES.new(password, AES.MODE_CBC)
-        cipher = obj.encrypt(message)
-        return cipher
-
     def runbash(self, cmd):
         process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
         return output, error
+
+if __name__ == "__main__":
+
+    # nice opening message
+    print('\n')
+    print('---------------------------------------')
+    print('-----------C-O-D-E-C-A-S-T-------------')
+    print('-----------------v1.0------------------')
+    print('---------------------------------------')
+    print('-------(c) Austin Marcus 2018----------')
+    print('---------------------------------------')
+    print('\n')
+
+    # get password and server name from user
+    sname = input('Desired server name: ')
+    pw = input('Passphrase: ')
+
+    # read in file with known clients
+    # create Server instance, pass in password and client table
+    # run server
+    s = Server(pw, [], sname)
+    s.run()
