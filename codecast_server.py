@@ -94,6 +94,7 @@ if __name__ == "__main__":
     print('---------------------------------------')
     print('-------(c) Austin Marcus 2018----------')
     print('---------------------------------------')
+    print('------------~server edition~-----------')
     print('\n')
 
     # get password and server name from user

@@ -3,9 +3,6 @@ from socket import *
 from threading import Thread
 import jack
 
-if __name__ == "__main__":
-    pass
-
 class Client():
 
 
@@ -43,3 +40,16 @@ class Client():
         process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
         return output, error
+
+if __name__ == "__main__":
+
+        # nice opening message
+        print('\n')
+        print('---------------------------------------')
+        print('-----------C-O-D-E-C-A-S-T-------------')
+        print('-----------------v1.0------------------')
+        print('---------------------------------------')
+        print('-------(c) Austin Marcus 2018----------')
+        print('---------------------------------------')
+        print('------------~client edition~-----------')
+        print('\n')
